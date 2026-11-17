@@ -1,0 +1,20 @@
+# Local development: the API + MongoDB Atlas Local (Atlas Search and Vector Search on your laptop,
+# no free-tier index limit, good for chunk-size experiments).
+#   docker compose up -d atlas
+#   python -m app.indexes --wait && python -m app.ingest --dir data/pdfs --recursive
+#   docker compose up -d --build api      -> http://localhost:8000
+services:
+  atlas:
+    image: mongodb/mongodb-atlas-local:8.0
+    ports: ["27017:27017"]
+    volumes: [atlas-data:/data/db, atlas-config:/data/configdb]
+  api:
+    build: .
+    env_file: .env
+    environment:
+      MONGODB_URI: mongodb://atlas:27017/?directConnection=true
+    ports: ["8000:8000"]
+    depends_on: [atlas]
+volumes:
+  atlas-data:
+  atlas-config:

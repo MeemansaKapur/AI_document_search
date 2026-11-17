@@ -1,0 +1,4 @@
+# Ingestion + evaluation CLIs (run from your laptop, not the API server)
+-r requirements.txt
+pymupdf==2.1
+tiktoken==0.14.0

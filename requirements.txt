@@ -1,0 +1,7 @@
+# API (what the Docker image installs)
+fastapi==0.163.1
+uvicorn[standard]==0.54.0
+pydantic==2.14.3
+pydantic-settings==2.16.3
+pymongo==4.20.0
+openai==3.51.0
